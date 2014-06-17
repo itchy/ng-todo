@@ -1,15 +1,18 @@
 <div id='task-list' ng-app="todoApp" >
-  <div ng-controller="TodoCtrl as task">
-    <h2>Total tasks: {{task.getTotalTasks()}}</h2>
+  <div ng-controller="TodoCtrl as list">
+    <h2>Total tasks: {{list.getTotalTasks()}}</h2>
     <ul class="list-unstyled">
-      <li ng-repeat="task in task.tasks">
+      <li ng-repeat="task in list.tasks">
         <input type='checkbox' ng-model='task.done'>
         <span class="done-{{task.done}}">{{task.body}}</span>
       </li>
     </ul>
-    <form class="form-horozantal" novalidate>
-      <input  type="text" ng-model="task.formTaskText" ng-model-instant>
-      <button class="btn glyphicon glyphicon-plus" ng-click="task.addTodo()" required> Add</button>
+    <form name="taskForm" class="form-horozantal" ng-controller="TaskController as taskCtrl" ng-submit="taskForm.$valid && taskCtrl.addTask(list)" novalidate>
+      <blockquote>
+        {{taskCtrl.item.body}}
+      </blockquote>
+      <input  type="text" ng-model="taskCtrl.item.body" required >
+      <input type="submit" id="submit" value="Add" />
     </form>
   </div>
 </div>
