@@ -7,7 +7,9 @@
     this.tasks = [];
 
     this.getTotalTasks = function(){
-      return this.tasks.length;
+      // var activeTasks = this.tasks.filter(function(x) { return !x.done ; });
+      var activeTasks = _.select(this.tasks, function(x) { return !x.done ; });
+      return activeTasks.length;
     };
 
     $http.get('/tasks.json').success(function(data){
