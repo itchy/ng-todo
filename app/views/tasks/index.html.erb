@@ -3,7 +3,7 @@
     <h2>Total Active Tasks: {{listCtrl.getTotalTasks()}}</h2>
     <ul class="list-unstyled">
       <li ng-repeat="task in listCtrl.tasks">
-        <input type='checkbox' ng-model='task.done'>
+        <input type='checkbox' ng-model='task.done' ng-change='listCtrl.update(task)'>
         <span class="done-{{task.done}}">{{task.body}}</span>
       </li>
     </ul>

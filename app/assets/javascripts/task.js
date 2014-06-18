@@ -6,6 +6,13 @@
     var list = this;
     this.tasks = [];
 
+    this.update = function(task){
+      var state = task.done ? 1 : 0
+      $http.put('/tasks/' + task.id + '.json', {task: {id: task.id, state: state}}).success(function(data){
+        console.log('updated task ' + task.id);
+      });
+    };
+
     this.getTotalTasks = function(){
       // var activeTasks = this.tasks.filter(function(x) { return !x.done ; });
       var activeTasks = _.select(this.tasks, function(x) { return !x.done ; });
@@ -20,7 +27,6 @@
   app.controller('TaskController',['$http', function($http){
     var task = this;
     this.item = {};
-
 
     this.addTask = function(list){
       $http.post('/tasks.json', {task: task.item}).success(function(data){
