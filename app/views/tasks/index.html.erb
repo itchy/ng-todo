@@ -4,7 +4,7 @@
     <ul class="list-unstyled">
       <li ng-repeat="task in listCtrl.tasks">
         <input type='checkbox' ng-model='task.done' ng-change='listCtrl.update(task)'>
-        <span class="done-{{task.done}}">{{task.body}}</span>
+        <span class="done-{{task.done}}" ng-click='listCtrl.updateTask(task)'>{{task.body}}</span>
       </li>
     </ul>
     <form name="taskForm" class="form-horizontal" ng-controller="TaskController as taskCtrl" ng-submit="taskForm.$valid && taskCtrl.addTask(listCtrl)" novalidate>

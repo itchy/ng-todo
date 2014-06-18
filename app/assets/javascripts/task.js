@@ -6,6 +6,12 @@
     var list = this;
     this.tasks = [];
 
+    this.updateTask = function(task){
+      console.log(task.done);
+      task.done = !task.done;
+      this.update(task);
+    };
+
     this.update = function(task){
       var state = task.done ? 1 : 0
       $http.put('/tasks/' + task.id + '.json', {task: {id: task.id, state: state}}).success(function(data){
